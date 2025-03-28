@@ -4,8 +4,8 @@ class_name Walking
 const WALK_SPEED = 150.0
 
 func enter():
-	player.get_node("AnimatedSprite2D").play("Walk")
-	#pass#animation_player.play("walk")
+	if animation_player:
+		animation_player.play("Walk")
 
 func process_input(event: InputEvent):
 	if event.is_action_pressed("jump") and player.is_on_floor():
@@ -21,10 +21,7 @@ func physics_update(delta: float):
 		Transitioned.emit(self, "Running")
 		return
 	
-	if input_dir < 0:
-		animation_player.flip_h = true
-	else:
-		animation_player.flip_h = false
+	animation_player.flip_h = player.velocity.x < 0
 		
 	if player.velocity.y > 0:
 		Transitioned.emit(self, "Falling")

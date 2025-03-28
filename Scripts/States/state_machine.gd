@@ -8,14 +8,12 @@ var current_state: State
 func _ready() -> void:
 	var parent = get_parent()
 	
-	# Assign player and animation references to states
 	for state in get_children():
 		if state is State:
 			state.player = parent
 			state.animation_player = parent.get_node("AnimatedSprite2D")
 			state.Transitioned.connect(on_change_state)
 
-	# Set initial state
 	if initial_state:
 		current_state = initial_state
 		current_state.enter()
@@ -30,11 +28,10 @@ func _physics_process(delta: float) -> void:
 		
 
 func on_change_state(state: State, new_state_name: String):
-	
 	if state != current_state:
 		return
 
-	var new_state = find_child(new_state_name, true, false)
+	var new_state = find_child(new_state_name)
 	if new_state and new_state is State:
 		current_state.exit()
 		current_state = new_state
