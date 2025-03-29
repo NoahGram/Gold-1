@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const GRAVITY = 600.0
+const GRAVITY = 1000.0
 
 @onready var state_machine = $StateMachine
 

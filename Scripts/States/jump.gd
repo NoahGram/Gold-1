@@ -2,7 +2,6 @@ extends State
 class_name Jumping
 
 const JUMP_FORCE = -400.0
-const GRAVITY = 600.0
 
 func enter():
 	player.velocity.y = JUMP_FORCE
@@ -11,8 +10,6 @@ func enter():
 	
 
 func physics_update(delta: float):
-	player.velocity.y += GRAVITY * delta
-
 	var input_dir = Input.get_axis("left", "right")
 	if not Input.is_action_pressed("run"):
 		player.velocity.x = input_dir * 100.0

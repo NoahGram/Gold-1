@@ -1,14 +1,14 @@
 extends State
 class_name Falling
 
-const GRAVITY = 500.0
+const FALL_SPEED = 800.0
 
 func enter():
 	if animation_player:
 		animation_player.play("Fall")
 
 func physics_update(delta: float):
-	player.velocity.y += GRAVITY * delta
+	player.velocity.y += FALL_SPEED * delta
 
 	var input_dir = Input.get_axis("left", "right")
 	player.velocity.x = input_dir * 100.0
